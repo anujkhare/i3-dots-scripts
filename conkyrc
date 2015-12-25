@@ -1,0 +1,131 @@
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 1
+times_in_seconds true
+
+# COLORS
+# Blue
+color0 00b6ed
+# Purple
+color1 bb00cc
+# Yellow
+color2 cccc00
+# Green
+color3 00cc11
+# Red
+color4 ff5555
+# Light grey
+color5 e1e1e1
+# Medium grey
+color6 c7c7c7
+# Dark grey
+color7 262626
+# Orange
+color8 cc7800
+
+TEXT
+
+[\
+# Kernel:
+#{"full_text":"KERNEL","color":"\#1793D1","separator":false,"separator_block_width":6},\
+#{"full_text":"${kernel}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+
+# CPU temperature:
+{"full_text":"CPU TEMP","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${hwmon 2 temp 2}<45}${hwmon 2 temp 2}","color":"\#AAF096","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon 2 temp 2}<50}${hwmon 2 temp 2}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon 2 temp 2}<55}${hwmon 2 temp 2}","color":"\#FF9933","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon 2 temp 2}>=55}${hwmon 2 temp 2}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"C°","color":"\#EEEEEE","separaor":true,"separator_block_width":10},\
+
+# GFX temperature:
+{"full_text":"GFX TEMP","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${hwmon temp 1}<50}${hwmon temp 1}","color":"\#AAF096","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon temp 1}<55}${hwmon temp 1}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon temp 1}<60}${hwmon temp 1}","color":"\#FF9933","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon temp 1}>=60}${hwmon temp 1}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"C°","color":"\#EEEEEE","separator":true,"separator_block_width":10},\
+
+# Download:
+{"full_text":"DOWN","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${downspeedf wlp8s0}<100}${downspeed wlp8s0}","color":"\#AAF096","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp8s0}<300}${downspeed wlp8s0}","color":"\#68B1E8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp8s0}<700}${downspeed wlp8s0}","color":"\#DB70B8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp8s0}<1000}${downspeed wlp8s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp8s0}>=1000}${downspeed wlp8s0}","color":"\#FF3333","separator":true,"separator_block_width":10},\
+{"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+
+# Upload:
+{"full_text":"UP","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${upspeedf wlp8s0}<15}${upspeed wlp8s0}","color":"\#AAF096","separator":true,"separator_block_width":10},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp8s0}<35}${upspeed wlp8s0}","color":"\#9470DB","separator":true,"separator_block_width":10},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp8s0}>=35}${upspeed wlp8s0}","color":"\#FF3333","separator":true,"separator_block_width":10},\
+{"full_text":"${endif}${endif}${endif}"},\
+
+# Memory:
+{"full_text":"MEM","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${memperc}<30}${memeasyfree}","color":"\#AAF096","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<60}${memeasyfree}","color":"\#F0DC64","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<85}${memeasyfree}","color":"\#FF9933","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}>=85}${memeasyfree}","color":"\#FF3333","separator":true,"separator_block_width":10},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# CPU:
+{"full_text":"CPU","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${cpu cpu0}<25}${cpu cpu0}","color":"\#AAF096","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<50}${cpu cpu0}","color":"\#F0DC64","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<75}${cpu cpu0}","color":"\#FF9933","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<=100}${cpu cpu0}","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"%","color":"\#EEEEEE","separator":true,"separator_block_width":10},\
+
+# volume:
+{"full_text":"VOL","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${exec pamixer --get-volume}%","color":"\#EEEEEE","separator":true,"separator_block_width":10},\
+
+# backlight:
+{"full_text":"BRI","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${exec echo $(xbacklight -g) | awk '{printf "%.0f",$1}'}%","color":"\#EEEEEE","separator":true,"separator_block_width":10},\
+
+# battery:
+{"full_text":"BAT","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${battery_percent BAT1}%: ${format_time ${battery_time BAT1} "\h:\m"}","color":"\#EEEEEE","separator":true,"separator_block_width":10},\
+#
+# AC/DC:
+#{"full_text":"|","color":"\#1793D1","separator":false,"separator_block_width":6},\
+#{"full_text":"${acpiacadapter AC1}","color":"\#2498D3","separator":false,"separator_block_width":6},\
+
+# Date:
+#{"full_text":"DATE","color":"\#1793D1","separator":false,"separator_block_width":6},\
+#{"full_text":"${time %D}","color":"\#FF3333","separator":true,"separator_block_width":10},\
+
+# Time:
+#{"full_text":"TIME","color":"\#1793D1","separator":false,"separator_block_width":6},\
+#{"full_text":"${time %r}","color":"\#FF3333","separator":false}\
+
+{"full_text":"","color":"\#1793D1","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 1 date -d today}","color":"\#FF3333","separator":false}\
+],
